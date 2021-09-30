@@ -23,21 +23,18 @@ class TicTacToe:
         try:
             self.printBoard()
             self.move = input(self.crntPlayer + ', Where do you want to go? (1-9): ')
-            if 'end' in self.move:
-                exit()
+            if isinstance(int(self.move), int) == False: print ('[ERROR] Please select a number!')
             else:
-                if isinstance(int(self.move), int) == False: print ('[ERROR] Please select a number!')
-                else:
-                    if int(self.move) > 0 and int(self.move) <= 9:
-                        if isinstance(self.board[int(self.move) - 1], int):
-                            self.board[int(self.move) - 1] = self.crntPlayer
-                            self.checkWin()
-                            if self.crntPlayer == self.players[0]: self.crntPlayer = self.players[1]
-                            else: self.crntPlayer = self.players[0]
-                        else:
-                            print('Tile has been taken, try another!')
+                if int(self.move) > 0 and int(self.move) <= 9:
+                    if isinstance(self.board[int(self.move) - 1], int):
+                        self.board[int(self.move) - 1] = self.crntPlayer
+                        self.checkWin()
+                        if self.crntPlayer == self.players[0]: self.crntPlayer = self.players[1]
+                        else: self.crntPlayer = self.players[0]
                     else:
-                        print('Please select a number on the board!')
+                        print('Tile has been taken, try another!')
+                else:
+                    print('Please select a number on the board!')
         except:
             print('[ERROR] Incorrect input, please try again!')
     
